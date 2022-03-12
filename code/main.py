@@ -38,7 +38,7 @@ def main():
     plt.cla()
     plt.close()
 
-    return pwst.error_plot_lines
+    return 
 
 if __name__ == "__main__":
     main()

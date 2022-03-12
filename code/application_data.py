@@ -30,18 +30,29 @@ def binomial_model(N, S0, u, r, K):
 
 
 def generate_stock_objective_values():
-    """
-    Runs Binomial Pricing Tree Model Several Times to create application data-set
-    """
+    '''
+    our_stocks_prices:
+    AAPL 148.1788976
+    AMAZON 3,314.99
+    TSLA 807.4015748
+    F 15.85
+    WYNN 102.5719685
+    MGM 42.32
+    C 68.92
+    JPM 157.1856
+    KO 56.14
+    MCD 242.26 
+    '''
     np.random.seed(101)
     factor_change = 1.3
     price = 30
     objective_value_tuples = []
 
+    our_stocks_prices=[148.1788976,3,314.99,807.4015748,15.85,102.5719685,42.32,68.92,157.1856,56.14,242.26]
     for i in range(10):
         for j in range(20):
             # the current stock prices
-            stock_prices = binomial_model(1, price, factor_change, 0.25, 8)
+            stock_prices = binomial_model(1, our_stocks_prices[i], factor_change, 0.25, 8)
 
             random_factor = np.random.uniform(0.90, 1.1)
             # the best gain of money for the first col
