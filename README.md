@@ -1,4 +1,4 @@
-# IntroductionToOptimization
+# Introduction To Optimization
 This repository outlines the final of Or S. Naim and Sapir Kroitoro in the course of Introduction to Optimization 89589, Bar Ilan University, 2021-2022.  
 We chose to write on Multiobjective Optimization problem in stocks. A full explaintion can be found on the pdf file:  
 --link to pdf--
