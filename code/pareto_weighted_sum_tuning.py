@@ -1,3 +1,12 @@
+"""
+Courtesy of:
+Harry Wang
+Name: Pareto-Weighted-Sum-Tuning
+Git: https://github.com/harryw1248/Pareto-Weighted-Sum-Tuning
+Presented at: The 2020 International Conference on Machine Learning,
+Computational Optimization, and Data Science (LOD)
+(https://lod2020.icas.xyz/program/).
+"""
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,55 +17,65 @@ import application_data
 alpha_plot_lines = []
 error_plot_lines = []
 
-def pareto_weighted_sum_tuning(all_tuples, alpha_vector, tolerance_vector, batch_size, iteration_limit):
+def pareto_weighted_sum_tuning(objective_value_tuples, alpha_vector, tolerance_vector, margin_from_half, iteration_limit):
     """
     Runs Pareto-Weighted-Sum-Tuning on a simulated sample user/decision-maker
     Returns criteria weights
     """
     f = open("svm_rank/user_queries_train.dat", "w")
     f.close()
-    #create random user
-    user_profile = Sample_User(alpha_vector, tolerance_vector)
 
-    all_alphaes_leaned = []
-    #the result
-    result_mean_alpha = [] 
+    user_virtual = Sample_User(alpha_vector, tolerance_vector)
 
-    #get batch of all_tuples.batch size=batch_size=setting
-    #return all_tuples as list and one_batch=one batch
-    data_subset = util.get_data_subset(all_tuples, batch_size)
-    #one batch
-    one_batch = data_subset[1]
+    alpha_vectors_learned = []
+    mean_alpha_vectors = []
+    alpha_0_relative_errors = []
+
+    data_subset = util.get_data_subset(objective_value_tuples, margin_from_half)
+    sample_tuples = data_subset[1]
 
     iteration_number = 0
-    ##til 15 itration.while there is stocks:
-    while iteration_number < iteration_limit and len(all_tuples) != 0:
-        iteration_number += 1
-        #leran vecor of constraint.the "user" rank each tuple
-        #svm ranking
-        one_alpha_learned = util.user_feedback(one_batch, user_profile, iteration_number)
-        #the rest of objective_value_pairs that isnt in the batch
-        objective_value_pairs = [x for x in all_tuples if x not in one_batch]
-        #get a new batch(without the pair in the last batch)
-        data_subset = util.get_data_subset(objective_value_pairs, batch_size)
-        one_batch = data_subset[1]
-        
-        all_alphaes_leaned.append(one_alpha_learned)
+    while iteration_number < iteration_limit and len(objective_value_tuples) != 0:
+         iteration_number += 1
+         alpha_vector_learned = util.user_feedback(sample_tuples, user_virtual, iteration_number)
+         objective_value_pairs = [x for x in objective_value_tuples if x not in sample_tuples]
+         data_subset = util.get_data_subset(objective_value_pairs, margin_from_half)
+         sample_tuples = data_subset[1]
+         alpha_vectors_learned.append(alpha_vector_learned)
+         mean_alpha_vector_learned = util.average_vectors(alpha_vectors_learned)
 
-        mean_alpha_learned = util.average_vectors(all_alphaes_leaned)
+         alpha_0_relative_error = abs(alpha_vector[0] - mean_alpha_vector_learned[0]) / alpha_vector[0]
+         alpha_0_relative_errors.append(alpha_0_relative_error)
+
+         mean_alpha_vectors.append(mean_alpha_vector_learned)
+
+         user_1 = Sample_User(mean_alpha_vector_learned, [0 for i in range(len(mean_alpha_vector_learned))])
+         for example in sample_tuples:
+             user_1.user_decision(example)
+
+         del user_1
+         user_virtual.clear_user_history()
+
+    alpha_plot_lines.append(mean_alpha_vectors)
+
+    alpha_0_relative_errors = [x*100 for x in alpha_0_relative_errors]
+    error_plot_lines.append(alpha_0_relative_errors)
+
+    return mean_alpha_vectors[-1]
 
 
-        result_mean_alpha.append(mean_alpha_learned)
-        # create a new user after learning user preference
-        user_1 = Sample_User(mean_alpha_learned, [0 for i in range(len(mean_alpha_learned))])
-        #the user rank again another batch,based on the alpha lreand
-        for example in one_batch:
-            user_1.user_decision(example) 
-
-        del user_1
-        user_profile.clear_user_history()
-    
-    alpha_plot_lines.append(result_mean_alpha)
 
 
-    return result_mean_alpha[-1]
+
+
+
+
+
+
+
+
+
+
+
+
+

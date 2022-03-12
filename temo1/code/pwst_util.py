@@ -1,14 +1,4 @@
 """
-Courtesy of:
-Harry Wang
-Name: Pareto-Weighted-Sum-Tuning
-Git: https://github.com/harryw1248/Pareto-Weighted-Sum-Tuning
-Presented at: The 2020 International Conference on Machine Learning,
-Computational Optimization, and Data Science (LOD)
-(https://lod2020.icas.xyz/program/).
-"""
-
-"""
 Contains utility functions for intermediate computations in Pareto-Weighted-Sum-Tuning
 """
 import os
@@ -84,7 +74,7 @@ def user_feedback(sample_pairs, user_virtual, iteration_number):
     f_read.close()
 
     sum_coef = sum(new_arr)
-    alpha_vector_learned = [x/sum_coef for x in new_arr]
-    alpha_vector_learned.pop()
+    alpha_num_learned = [x/sum_coef for x in new_arr]
+    alpha_num_learned.pop()
 
-    return alpha_vector_learned
+    return alpha_num_learned

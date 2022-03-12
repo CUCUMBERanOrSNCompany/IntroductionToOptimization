@@ -1,15 +1,4 @@
 """
-Courtesy of:
-Harry Wang
-Name: Pareto-Weighted-Sum-Tuning
-Git: https://github.com/harryw1248/Pareto-Weighted-Sum-Tuning
-Presented at: The 2020 International Conference on Machine Learning,
-Computational Optimization, and Data Science (LOD)
-(https://lod2020.icas.xyz/program/).
-"""
-
-
-"""
 Class that simulates a sample user/decision-maker
 User has an alpha value that represents criteria weight and tolerance value that represents human variation
 """
@@ -68,6 +57,7 @@ class Sample_User:
         return self.ordered_list
 
     def user_decision(self, objective_value_tuple):
+        #expected utility function
         """
         Uses criteria weights to simulate decision
         """
