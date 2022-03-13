@@ -14,6 +14,6 @@ As a result graph of alpha progress will appear.
 In the event our code is not producing meaningful results, please download the following repository:
 https://github.com/harryw1248/Pareto-Weighted-Sum-Tuning
 
-And REPLACE the file example.py, with ours. 
+And REPLACE the file example.py and application_data.py with ours. 
 
 Have a nice day and thank you for testing our work!
