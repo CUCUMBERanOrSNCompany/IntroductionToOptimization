@@ -7,7 +7,7 @@ We chose to write on the Multi-Objective Optimization problem in stocks. A full 
 The code requires python and the Libraries: Numpy, Matplotlib.pyplot, Scipy, and Sklrean. Make sure to install them before.  
 To run the code, please open Terminal and run the following command:  
 ```
-python main.py
+python example.py
 ```
 As a result graph of alpha progress will appear.
 
