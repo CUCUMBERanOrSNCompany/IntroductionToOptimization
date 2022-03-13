@@ -1,7 +1,7 @@
 # Introduction To Optimization
 This repository outlines the final of Or S. Naim and Sapir Kroitoro in the course of Introduction to Optimization 89589, Bar Ilan University, 2021-2022.  
 We chose to write on the Multi-Objective Optimization problem in stocks. A full explanation can be found on the pdf file:  
-[project.pdf](https://github.com/CUCUMBERanOrSNCompany/IntroductionToOptimization/blob/main/%D7%A4%D7%A8%D7%95%D7%99%D7%99%D7%A7%D7%98%20%D7%9E%D7%A1%D7%9B%D7%9D%20%D7%A7%D7%95%D7%A8%D7%A1%20%D7%9E%D7%91%D7%95%D7%90%20%D7%9C%D7%90%D7%95%D7%A4%D7%98%D7%99%D7%9E%D7%99%D7%96%D7%A6%D7%99%D7%94.pdf)
+[On_Multi_Objective_Optimization_By_Sapir_Kroitoro_and_Or_S_Naim.pdf](https://github.com/CUCUMBERanOrSNCompany/IntroductionToOptimization/blob/main/On_Multi_Objective_Optimization_By_Sapir_Kroitoro_and_Or_S_Naim.pdf)
 
 # How to use
 The code requires python and the Libraries: Numpy, Matplotlib.pyplot, Scipy, and Sklrean. Make sure to install them before.  
